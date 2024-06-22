@@ -7,28 +7,48 @@ public class Candy
 {
     public int MinimumRequiredCandy(List<int> children)
     {
-        var childrenWithCandy = children.Select(c => (rating: c, candy: 1)).ToList();
-        while (!DistributeCandy(childrenWithCandy))
-        {
-        }
-        return childrenWithCandy.Sum(x => x.candy);
+        var childrenWithCandy = children.Select(c => new ChildWithCandy(c, 1)).ToList();
+        LeftPass(childrenWithCandy);
+        RightPass(childrenWithCandy);
+        return childrenWithCandy.Sum(x => x.Candy);
     }
 
-    public bool DistributeCandy(List<(int rating, int candy)> childrenWithCandy)
+    public void RightPass(List<ChildWithCandy> childrenWithCandy)
     {
-        var wasCorrectlyDistributed = true;
-        for (int i = 0; i < childrenWithCandy.Count; i++)
+        for (int i = 1; i < childrenWithCandy.Count; i++)
         {
             var current = childrenWithCandy[i];
-            var leftNeighbor = i > 0 ? childrenWithCandy[i - 1] : (rating: 0, candy: 0);
-            var rightNeighbor = i < childrenWithCandy.Count - 1 ? childrenWithCandy[i + 1] : (rating: 0, candy: 0);
-            bool shouldGetAdditionalCandy = (current.rating > leftNeighbor.rating && current.candy <= leftNeighbor.candy) || (current.rating > rightNeighbor.rating && current.candy <= rightNeighbor.candy);
-            if (shouldGetAdditionalCandy)
+            var leftNeighbor = childrenWithCandy[i - 1];
+            if (leftNeighbor.Rating < current.Rating && leftNeighbor.Candy >= current.Candy)
             {
-                wasCorrectlyDistributed = false;
-                childrenWithCandy[i] = (current.rating, current.candy + 1);
+                current.Candy = leftNeighbor.Candy + 1;
             }
         }
-        return wasCorrectlyDistributed;
+    }
+
+    public void LeftPass(List<ChildWithCandy> childrenWithCandy)
+    {
+        for (int i = childrenWithCandy.Count - 2; i >= 0; i--)
+        {
+            var current = childrenWithCandy[i];
+            var rigthNeighbor = childrenWithCandy[i + 1];
+            if (rigthNeighbor.Rating < current.Rating && rigthNeighbor.Candy >= current.Candy)
+            {
+                current.Candy = rigthNeighbor.Candy + 1;
+            }
+        }
+    }
+
+    public class ChildWithCandy
+    {
+        public ChildWithCandy(int rating, int candy)
+        {
+            this.Rating = rating;
+            this.Candy = candy;
+        }
+
+        public int Rating { get; set; }
+
+        public int Candy { get; set; }
     }
 }
