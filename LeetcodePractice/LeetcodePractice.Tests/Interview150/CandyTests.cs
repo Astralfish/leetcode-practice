@@ -20,5 +20,6 @@ public class CandyTests
         yield return [new List<int> { 1, 0, 2 }, 5];
         yield return [new List<int> { 1, 2, 2 }, 4];
         yield return [new List<int> { 7, 7, 1, 5, 3, 4, 3, 2, 1, 2, 1 }, 20];
+        yield return [new List<int> { 1, 2, 3, 4, 3, 2, 1, 0, -1, 0, 1, 4, 2, 1, 4 }, 41];
     }
 }
