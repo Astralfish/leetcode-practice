@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LeetcodePractice.Implementation.Interview150;
+﻿namespace LeetcodePractice.Implementation.Interview150;
 public class TextJustification
 {
     public List<string> Justify(List<string> words, int maxWidth)
