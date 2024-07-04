@@ -1,4 +1,6 @@
-﻿namespace LeetcodePractice.Implementation.Interview150;
+﻿using LeetcodePractice.Implementation.Interview150.Shared;
+
+namespace LeetcodePractice.Implementation.Interview150;
 public class ReverseNodesInKGroup
 {
     public ListNode ReverseKGroup(ListNode head, int k)
@@ -27,16 +29,5 @@ public class ReverseNodesInKGroup
             current = current.next;
         }
         return preHead.next;
-    }
-
-    public class ListNode
-    {
-        public int val;
-        public ListNode? next;
-        public ListNode(int val = 0, ListNode? next = null)
-        {
-            this.val = val;
-            this.next = next;
-        }
     }
 }
