@@ -16,6 +16,7 @@ public class ClimbingStairsTests
 
     public static IEnumerable<object[]> HowManyWaysTestData()
     {
+        yield return [1, 1];
         yield return [2, 2];
         yield return [3, 3];
         yield return [4, 5];
