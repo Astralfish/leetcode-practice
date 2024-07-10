@@ -5,12 +5,12 @@ public class ClimbingStairs
     {
         var current = 1;
         var currentMinus1 = 1;
-        var currentminus2 = 1;
+        var currentMinus2 = 1;
 
         for (int i = 2; i <= numberOfSteps; i++)
         {
-            current = currentMinus1 + currentminus2;
-            currentminus2 = currentMinus1;
+            current = currentMinus1 + currentMinus2;
+            currentMinus2 = currentMinus1;
             currentMinus1 = current;
         }
 
